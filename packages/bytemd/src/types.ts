@@ -207,6 +207,10 @@ export interface EditorProps extends ViewerProps {
    * Maximum length (number of characters) of value
    */
   maxLength?: number
+  /**
+   *
+   */
+  colorScheme?: 'light' | 'dark'
 }
 
 export interface ViewerProps {
