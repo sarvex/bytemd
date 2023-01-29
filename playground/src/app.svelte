@@ -9,7 +9,6 @@
   import mediumZoom from '@bytemd/plugin-medium-zoom'
   import mermaid from '@bytemd/plugin-mermaid'
   import { Editor } from 'bytemd'
-  import 'bytemd/dist/index.css'
   import 'github-markdown-css'
   import 'highlight.js/styles/vs.css'
   // placed after highlight styles to override `code` padding
