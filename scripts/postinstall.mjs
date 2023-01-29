@@ -49,30 +49,19 @@ packages.forEach((p) => {
     directory: `packages/${p}`,
   }
 
+  pkg.type = 'module'
   pkg.types = './dist/index.d.ts'
-  pkg.module = './dist/index.mjs'
   pkg.main = './dist/index.js'
-  pkg.unpkg = './dist/index.umd.js'
-  pkg.jsdelivr = './dist/index.umd.js'
 
   pkg.exports = {
     '.': {
       types: './dist/index.d.ts',
-      import: './dist/index.mjs',
-      require: './dist/index.js',
+      import: './dist/index.js',
     },
     './locales/*': './locales/*',
-
-    // for compatible with old version
-    './lib/locales/*': './locales/*',
   }
   pkg.files = ['dist', 'locales']
 
-  if (pkg.name === 'bytemd') {
-    pkg.exports['./dist/index.css'] = './dist/index.css'
-    pkg.exports['./dist/index.min.css'] = './dist/index.min.css'
-    pkg.files.push('svelte')
-  }
   fs.writeJsonSync(pkgPath, pkg)
 })
 
