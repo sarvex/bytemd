@@ -23,6 +23,9 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "vite build"
+  },
   "dependencies": {
     "remark-breaks": "^3.0.2"
   },

@@ -3,6 +3,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import sveltePreprocess from 'svelte-preprocess'
 import { fileURLToPath } from 'url'
+import { defineConfig } from 'vite'
 
 // https://stackoverflow.com/a/50052194
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -22,3 +23,19 @@ export const sveltePreprocessor = sveltePreprocess({
     [/([>}])[\s]+(<|{[/#:][a-z][^}]*})/g, '$1$2'],
   ],
 })
+
+export const defineLibConfig = ({ pkg, plugins = [] }) =>
+  defineConfig({
+    build: {
+      lib: {
+        entry: 'src/index.ts',
+        formats: ['es'],
+        fileName: 'index',
+      },
+      minify: false,
+      rollupOptions: {
+        external: Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }),
+      },
+    },
+    plugins,
+  })

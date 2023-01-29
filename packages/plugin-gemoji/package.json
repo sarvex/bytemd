@@ -23,6 +23,9 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "vite build"
+  },
   "dependencies": {
     "remark-gemoji": "^7.0.1"
   },

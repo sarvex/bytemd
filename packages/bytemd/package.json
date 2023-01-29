@@ -28,6 +28,9 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "vite build"
+  },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "@types/codemirror": "^5.60.7",

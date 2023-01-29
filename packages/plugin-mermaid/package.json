@@ -23,6 +23,9 @@
     "dist",
     "locales"
   ],
+  "scripts": {
+    "build": "vite build"
+  },
   "dependencies": {
     "mermaid": "^9.3.0"
   },
