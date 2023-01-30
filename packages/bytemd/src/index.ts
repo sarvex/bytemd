@@ -11,5 +11,6 @@ export { icons } from './icons'
 // @ts-ignore
 export { default as wordCount } from 'word-count'
 
+export * from './editor'
 export * from './toc'
 export * from './toolbar'

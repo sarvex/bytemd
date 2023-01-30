@@ -27,7 +27,8 @@ export default function Toolbar(props: {
   locale: BytemdLocale
   actions: BytemdAction[]
   rightAfferentActions: BytemdAction[]
-  onAction: (a: 'toc' | 'help' | 'write' | 'preview' | 'fullscreen') => void
+  onTab: (tab: 'write' | 'preview') => void
+  onClick: (a: 'toc' | 'help' | 'fullscreen') => void
 }) {
   const toolbar = useRef<HTMLDivElement>(null)
 
@@ -46,7 +47,7 @@ export default function Toolbar(props: {
           handler: {
             type: 'action',
             click() {
-              props.onAction('toc')
+              props.onClick('toc')
             },
           },
           active: tocActive,
@@ -57,7 +58,7 @@ export default function Toolbar(props: {
           handler: {
             type: 'action',
             click() {
-              props.onAction('help')
+              props.onClick('help')
             },
           },
           active: helpActive,
@@ -72,7 +73,7 @@ export default function Toolbar(props: {
                 handler: {
                   type: 'action',
                   click() {
-                    props.onAction('write')
+                    props.onTab('write')
                   },
                 },
                 active: writeActive,
@@ -85,7 +86,7 @@ export default function Toolbar(props: {
                 handler: {
                   type: 'action',
                   click() {
-                    props.onAction('preview')
+                    props.onTab('preview')
                   },
                 },
                 active: previewActive,
@@ -101,7 +102,7 @@ export default function Toolbar(props: {
           handler: {
             type: 'action',
             click() {
-              props.onAction('fullscreen')
+              props.onClick('fullscreen')
             },
           },
         },
@@ -145,22 +146,28 @@ export default function Toolbar(props: {
   })
 
   return (
-    <div class="bytemd-toolbar" ref={toolbar} onClick={state.handleClick}>
+    <div
+      class="bytemd-toolbar"
+      ref={toolbar}
+      onClick={() => state.handleClick()}
+    >
       {props.split ? (
-        <ToolbarActions actions={props.actions} />
+        <ToolbarActions actions={props.actions.filter((a) => a.handler)} />
       ) : (
         <>
           <div
-            onClick={() => props.onAction('write')}
-            class="bytemd-toolbar-tab"
-            class:bytemd-toolbar-tab-active={props.activeTab !== 'preview'}
+            onClick={() => props.onTab('write')}
+            class={cx('bytemd-toolbar-tab', {
+              'bytemd-toolbar-tab-active': props.activeTab !== 'preview',
+            })}
           >
             {props.locale.write}
           </div>
           <div
-            onClick={() => props.onAction('preview')}
-            class="bytemd-toolbar-tab"
-            class:bytemd-toolbar-tab-active={props.activeTab === 'preview'}
+            onClick={() => props.onTab('preview')}
+            class={cx('bytemd-toolbar-tab', {
+              'bytemd-toolbar-tab-active': props.activeTab === 'preview',
+            })}
           >
             {props.locale.preview}
           </div>
@@ -170,8 +177,9 @@ export default function Toolbar(props: {
       <div class="bytemd-toolbar-right">
         {state.rightActions.map((item, index) => (
           <div
-            class={cx('bytemd-toolbar-icon', tippyClass, tippyClassRight)}
-            class:bytemd-toolbar-icon-active={item.active}
+            class={cx('bytemd-toolbar-icon', tippyClass, tippyClassRight, {
+              'bytemd-toolbar-icon-active': item.active,
+            })}
             bytemd-tippy-path={index}
             innerHTML={item.icon}
           ></div>

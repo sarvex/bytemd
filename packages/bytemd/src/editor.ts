@@ -19,6 +19,8 @@ import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontm
 import useYaml from 'codemirror-ssr/mode/yaml/yaml.js'
 import selectFiles from 'select-files'
 
+export type { Editor }
+
 export function createCodeMirror() {
   const codemirror = factory()
   usePlaceholder(codemirror)

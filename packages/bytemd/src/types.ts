@@ -214,6 +214,8 @@ export interface EditorProps extends ViewerProps {
    * Maximum length (number of characters) of value
    */
   maxLength?: number
+
+  onChange?(value: string): void
 }
 
 export interface ViewerProps {
