@@ -8,7 +8,7 @@
   import math from '@bytemd/plugin-math'
   import mediumZoom from '@bytemd/plugin-medium-zoom'
   import mermaid from '@bytemd/plugin-mermaid'
-  import { Editor } from 'bytemd'
+  import { Viewer } from '@bytemd/svelte'
   import 'github-markdown-css'
   import 'highlight.js/styles/vs.css'
   // placed after highlight styles to override `code` padding
@@ -102,7 +102,7 @@
     {/each}
   </div>
 
-  <Editor
+  <Viewer
     {value}
     {mode}
     {plugins}

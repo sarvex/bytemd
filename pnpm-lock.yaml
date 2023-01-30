@@ -271,8 +271,8 @@ importers:
       '@bytemd/plugin-math-ssr': workspace:*
       '@bytemd/plugin-medium-zoom': workspace:*
       '@bytemd/plugin-mermaid': workspace:*
+      '@bytemd/svelte': workspace:*
       '@sveltejs/vite-plugin-svelte': 2.0.2
-      bytemd: workspace:*
       github-markdown-css: ^5.1.0
       highlight.js: ^11.7.0
       katex: ^0.16.4
@@ -289,8 +289,8 @@ importers:
       '@bytemd/plugin-math-ssr': link:../packages/plugin-math-ssr
       '@bytemd/plugin-medium-zoom': link:../packages/plugin-medium-zoom
       '@bytemd/plugin-mermaid': link:../packages/plugin-mermaid
+      '@bytemd/svelte': link:../packages/svelte
       '@sveltejs/vite-plugin-svelte': 2.0.2_vite@4.0.4
-      bytemd: link:../packages/bytemd
       github-markdown-css: 5.1.0
       highlight.js: 11.7.0
       katex: 0.16.4
