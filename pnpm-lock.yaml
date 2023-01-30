@@ -299,9 +299,11 @@ importers:
     specifiers:
       '@builder.io/mitosis': ^0.0.87
       '@builder.io/mitosis-cli': ^0.0.45
+      bytemd: workspace:*
     devDependencies:
       '@builder.io/mitosis': 0.0.87
       '@builder.io/mitosis-cli': 0.0.45
+      bytemd: link:../packages/bytemd
 
 packages:
 

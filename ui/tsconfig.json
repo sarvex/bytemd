@@ -1,5 +1,8 @@
 {
+  "references": [{ "path": "../packages/bytemd" }],
   "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "node",
     "jsx": "preserve",
     "jsxImportSource": "@builder.io/mitosis"
   }
