@@ -224,6 +224,15 @@ importers:
       '@types/react': 18.0.27
       react: 18.2.0
 
+  packages/svelte:
+    specifiers:
+      bytemd: workspace:*
+      svelte: ^3.55.1
+    dependencies:
+      bytemd: link:../bytemd
+    devDependencies:
+      svelte: 3.55.1
+
   packages/vue:
     specifiers:
       bytemd: workspace:*

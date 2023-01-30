@@ -1,0 +1,38 @@
+{
+  "name": "@bytemd/svelte",
+  "version": "1.20.2",
+  "description": "Hackable Markdown Editor and Viewer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/bytemd.git",
+    "directory": "packages/svelte"
+  },
+  "license": "MIT",
+  "author": "Rongjian Zhang",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./locales/*": "./locales/*"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "locales"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "bytemd": "workspace:*"
+  },
+  "devDependencies": {
+    "svelte": "^3.55.1"
+  },
+  "peerDependencies": {
+    "svelte": "^3.0.0"
+  }
+}

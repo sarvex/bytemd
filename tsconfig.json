@@ -13,6 +13,7 @@
     { "path": "packages/plugin-medium-zoom" },
     { "path": "packages/plugin-mermaid" },
     { "path": "packages/react" },
+    { "path": "packages/svelte" },
     { "path": "packages/vue" },
     { "path": "packages/vue-next" }
   ]
