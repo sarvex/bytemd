@@ -7,5 +7,7 @@ export { getProcessor } from './utils'
 
 // common
 export { default as cx } from 'classnames'
+// @ts-ignore
+export { default as wordCount } from 'word-count'
 
 export * from './toc'
