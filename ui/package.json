@@ -1,0 +1,11 @@
+{
+  "name": "@bytemd/ui",
+  "private": true,
+  "scripts": {
+    "build": "mitosis build"
+  },
+  "devDependencies": {
+    "@builder.io/mitosis": "^0.0.87",
+    "@builder.io/mitosis-cli": "^0.0.45"
+  }
+}
