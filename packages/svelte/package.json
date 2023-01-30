@@ -24,13 +24,14 @@
     "locales"
   ],
   "scripts": {
-    "build": "vite build"
+    "build": "node build.js"
   },
   "dependencies": {
     "bytemd": "workspace:*"
   },
   "devDependencies": {
-    "svelte": "^3.55.1"
+    "svelte": "^3.55.1",
+    "svelte2tsx": "^0.6.0"
   },
   "peerDependencies": {
     "svelte": "^3.0.0"

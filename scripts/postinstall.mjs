@@ -15,7 +15,10 @@ function readFileSyncSafe(p) {
 
 const plugins = packages.filter((x) => x.startsWith('plugin-'))
 
+// package tsconfig
 packages.forEach((p) => {
+  if (p === 'svelte') return
+
   const tsconfig = path.join(packagesDir, p, 'tsconfig.json')
   const c = fs.readJsonSync(tsconfig)
   c.include = ['src', 'src/locales/*.json'] //  https://github.com/microsoft/TypeScript/issues/25636#issuecomment-627111031
@@ -24,10 +27,10 @@ packages.forEach((p) => {
     outDir: 'dist',
   }
 
-  // tsconfig
   fs.writeJsonSync(tsconfig, c)
 })
 
+// root tsconfig
 fs.writeJsonSync('tsconfig.json', {
   files: [],
   references: [
@@ -36,14 +39,16 @@ fs.writeJsonSync('tsconfig.json', {
   ],
 })
 
+// license
 packages.forEach((p) => {
-  // license
   fs.copyFileSync(
     path.join(rootDir, 'LICENSE'),
     path.join(packagesDir, p, 'LICENSE')
   )
+})
 
-  // package.json
+// package.json meta
+packages.forEach((p) => {
   const pkgPath = path.join(packagesDir, p, 'package.json')
   const pkg = fs.readJsonSync(pkgPath)
   pkg.repository = {
@@ -52,10 +57,10 @@ packages.forEach((p) => {
     directory: `packages/${p}`,
   }
 
+  pkg.files = ['dist', 'locales']
   pkg.type = 'module'
   pkg.types = './dist/index.d.ts'
   pkg.main = './dist/index.js'
-
   pkg.exports = {
     '.': {
       types: './dist/index.d.ts',
@@ -63,15 +68,23 @@ packages.forEach((p) => {
     },
     './locales/*': './locales/*',
   }
-  pkg.files = ['dist', 'locales']
-  pkg.scripts = {
-    build: 'vite build',
+
+  if (p === 'svelte') {
+    pkg.scripts = {
+      build: 'node build.js',
+    }
+  } else {
+    pkg.scripts = {
+      build: 'vite build',
+    }
   }
 
   fs.writeJsonSync(pkgPath, pkg)
+})
 
-  // vite config
-  if (!['bytemd', 'vue', 'vue-next'].includes(p)) {
+// vite config
+packages.forEach((p) => {
+  if (!['bytemd', 'vue', 'vue-next', 'svelte'].includes(p)) {
     fs.writeFileSync(
       path.join(packagesDir, p, 'vite.config.ts'),
       `
