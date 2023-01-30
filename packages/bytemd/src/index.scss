@@ -1,4 +1,3 @@
-@import 'codemirror-ssr/lib/codemirror.css';
 @import 'tippy.js/dist/tippy.css';
 @import 'tippy.js/themes/light-border.css';
 @import '@primer/css/support/variables/color-system.scss';
@@ -17,6 +16,7 @@ $max-width: 800px;
   &-hidden {
     display: none !important;
   }
+
 
   /* Force content-box sizing for the elements where we expect it */
   .CodeMirror-scroll,
@@ -141,10 +141,10 @@ $max-width: 800px;
     vertical-align: top;
     height: 100%;
     overflow: hidden;
-    .CodeMirror {
+    .cm-editor {
       height: 100%;
       font-size: 14px;
-      line-height: 1.5;
+      width: 300px; // TODO:
       pre.CodeMirror-placeholder {
         color: $gray-400;
       }

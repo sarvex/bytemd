@@ -6,40 +6,23 @@ import type {
   BytemdLocale,
   BytemdEditorContext,
 } from './types'
-import type { Editor, Position } from 'codemirror'
-import type CodeMirror from 'codemirror'
-import factory from 'codemirror-ssr'
-import usePlaceholder from 'codemirror-ssr/addon/display/placeholder.js'
-import useContinuelist from 'codemirror-ssr/addon/edit/continuelist.js'
-import useOverlay from 'codemirror-ssr/addon/mode/overlay.js'
-import useGfm from 'codemirror-ssr/mode/gfm/gfm.js'
-import useMarkdown from 'codemirror-ssr/mode/markdown/markdown.js'
-import useXml from 'codemirror-ssr/mode/xml/xml.js'
-import useYamlFrontmatter from 'codemirror-ssr/mode/yaml-frontmatter/yaml-frontmatter.js'
-import useYaml from 'codemirror-ssr/mode/yaml/yaml.js'
+import { markdown } from '@codemirror/lang-markdown'
+import { EditorView, basicSetup } from 'codemirror'
 import selectFiles from 'select-files'
 
-export type { Editor }
-
-export function createCodeMirror() {
-  const codemirror = factory()
-  usePlaceholder(codemirror)
-  useOverlay(codemirror)
-  useXml(codemirror) // inline html highlight
-  useMarkdown(codemirror)
-  useGfm(codemirror)
-  useYaml(codemirror)
-  useYamlFrontmatter(codemirror)
-  useContinuelist(codemirror)
-  return codemirror
+export function createEditor(dom: HTMLElement) {
+  let editor = new EditorView({
+    extensions: [basicSetup, markdown()],
+    parent: dom,
+  })
+  return editor
 }
+
+export type { EditorView } from 'codemirror'
 
 export type EditorUtils = ReturnType<typeof createEditorUtils>
 
-export function createEditorUtils(
-  codemirror: typeof CodeMirror,
-  editor: Editor
-) {
+export function createEditorUtils(codemirror, editor) {
   return {
     /**
      * Wrap text with decorators, for example:

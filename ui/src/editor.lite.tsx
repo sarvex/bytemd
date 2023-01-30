@@ -6,13 +6,12 @@ import Viewer from './viewer.lite'
 import { onMount, useRef, useStore } from '@builder.io/mitosis'
 import {
   BytemdEditorContext,
-  createCodeMirror,
-  createEditorUtils,
+  createEditor,
   cx,
   EditorProps,
+  EditorView,
   getBuiltinActions,
 } from 'bytemd'
-import type { Editor as CmEditor } from 'bytemd'
 import en from 'bytemd/locales/en.json'
 
 export default function Editor(props: EditorProps) {
@@ -21,12 +20,11 @@ export default function Editor(props: EditorProps) {
   const previewEl = useRef<HTMLDivElement>()
 
   const state = useStore({
-    codemirror: null as ReturnType<typeof createCodeMirror>,
+    editor: null as EditorView | null,
     activeTab: false as false | 'write' | 'preview',
     sidebar: false as false | 'help' | 'toc',
     fullscreen: false,
     containerWidth: Infinity, // TODO: first screen
-    editor: null as CmEditor | null,
     syncEnabled: true,
 
     get split() {
@@ -47,11 +45,8 @@ export default function Editor(props: EditorProps) {
     },
     get context() {
       const context: BytemdEditorContext = {
-        // @ts-ignore
-        codemirror,
-        editor: state.editor,
         root,
-        ...createEditorUtils(state.codemirror, state.editor),
+        // ...createEditorUtils(state.codemirror, state.editor),
       }
       return context
     },
@@ -82,31 +77,7 @@ export default function Editor(props: EditorProps) {
   })
 
   onMount(() => {
-    state.codemirror = createCodeMirror()
-
-    state.editor = state.codemirror(editorEl, {
-      value: props.value,
-      mode: 'yaml-frontmatter',
-      lineWrapping: true,
-      tabSize: 8, // keep consistent with preview: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size#formal_definition
-      indentUnit: 4, // nested ordered list does not work with 2 spaces
-      extraKeys: {
-        Enter: 'newlineAndIndentContinueMarkdownList',
-      }, // https://github.com/codemirror/CodeMirror/blob/c955a0fb02d9a09cf98b775cb94589e4980303c1/mode/markdown/index.html#L359
-      ...props.editorConfig,
-      placeholder: props.placeholder,
-    })
-
-    // https://github.com/codemirror/CodeMirror/issues/2428#issuecomment-39315423
-    // https://github.com/codemirror/CodeMirror/issues/988#issuecomment-392232020
-    state.editor.addKeyMap({
-      Tab: 'indentMore',
-      'Shift-Tab': 'indentLess',
-    })
-
-    state.editor.on('change', () => {
-      props.onChange(state.editor.getValue())
-    })
+    state.editor = createEditor(editorEl)
 
     new ResizeObserver((entries) => {
       state.containerWidth = entries[0].contentRect.width
