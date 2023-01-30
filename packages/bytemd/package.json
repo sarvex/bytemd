@@ -37,6 +37,7 @@
     "@types/hast": "^2.3.4",
     "@types/lodash-es": "^4.17.6",
     "@types/mdast": "^3.0.10",
+    "classnames": "^2.3.2",
     "codemirror-ssr": "^0.65.0",
     "hast-util-sanitize": "^4.1.0",
     "lodash-es": "^4.17.21",

@@ -55,6 +55,7 @@ export default function Viewer(props: ViewerProps) {
   return (
     <div
       ref={body}
+      class="markdown-body"
       innerHTML={`${state.file}<!--${(state.index = state.index + 1)}-->`}
     />
   )

@@ -74,6 +74,7 @@ importers:
       '@types/hast': ^2.3.4
       '@types/lodash-es': ^4.17.6
       '@types/mdast': ^3.0.10
+      classnames: ^2.3.2
       codemirror-ssr: ^0.65.0
       hast-util-sanitize: ^4.1.0
       lodash-es: ^4.17.21
@@ -94,6 +95,7 @@ importers:
       '@types/hast': 2.3.4
       '@types/lodash-es': 4.17.6
       '@types/mdast': 3.0.10
+      classnames: 2.3.2
       codemirror-ssr: 0.65.0_@types+codemirror@5.60.7
       hast-util-sanitize: 4.1.0
       lodash-es: 4.17.21
@@ -4089,6 +4091,10 @@ packages:
   /ci-info/3.3.2:
     resolution: {integrity: sha512-xmDt/QIAdeZ9+nfdPsaBCpMvHNLFiLdjj59qjqn+6iPe6YmHGQ35sBnQ8uslRBXFmXkiZQOJRjvQeoGppoTjjg==}
     dev: true
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
 
   /clean-css/4.2.4:
     resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
