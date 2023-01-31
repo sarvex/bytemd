@@ -21,31 +21,29 @@ export default function Status(props: {
 
   return (
     <div class="bytemd-status">
-      <div class="bytemd-status-left">
-        <span>
-          {props.locale.words}: <strong>{state.words}</strong>
-        </span>
-        <span>
-          {props.locale.lines}: <strong>{state.lines}</strong>
-        </span>
-        {props.islimited && (
-          <span class="bytemd-status-error">{props.locale.limited}</span>
-        )}
-      </div>
-
-      <div class="bytemd-status-right">
-        {props.showSync && (
-          <label>
-            <input
-              type="checkbox"
-              checked={props.syncEnabled}
-              onChange={() => props.onEnableSync(props.syncEnabled)}
-            />
-            {props.locale.sync}
-          </label>
-        )}
-        <span onClick={() => props.onTop()}>{props.locale.top}</span>
-      </div>
+      <span>
+        {props.locale.words}: <strong>{state.words}</strong>
+      </span>
+      <span>
+        {props.locale.lines}: <strong>{state.lines}</strong>
+      </span>
+      {props.islimited && (
+        <span class="bytemd-status-error">{props.locale.limited}</span>
+      )}
+      <div className="bytemd-space"></div>
+      {props.showSync && (
+        <label class="bytemd-status-sync">
+          <input
+            type="checkbox"
+            checked={props.syncEnabled}
+            onChange={() => props.onEnableSync(props.syncEnabled)}
+          />
+          {props.locale.sync}
+        </label>
+      )}
+      <span class="bytemd-status-top" onClick={() => props.onTop()}>
+        {props.locale.top}
+      </span>
     </div>
   )
 }

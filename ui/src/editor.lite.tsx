@@ -51,30 +51,6 @@ export default function Editor(props: EditorProps) {
       }
       return context
     },
-    get styles() {
-      let edit: string
-      let preview: string
-
-      if (state.split && state.activeTab === false) {
-        if (state.sidebar) {
-          edit = `width:calc(50% - ${state.sidebar ? 140 : 0}px)`
-          preview = `width:calc(50% - ${state.sidebar ? 140 : 0}px)`
-        } else {
-          edit = 'width:50%'
-          preview = 'width:50%'
-        }
-      } else if (state.activeTab === 'preview') {
-        edit = 'display:none'
-        preview = `width:calc(100% - ${state.sidebar ? 280 : 0}px)`
-      } else {
-        edit = `width:calc(100% - ${state.sidebar ? 280 : 0}px)`
-        preview = 'display:none'
-        // TODO: use width:0 to make scroll sync work until
-        // the position calculation improved (causes white screen after switching to editor only)
-      }
-
-      return { edit, preview }
-    },
   })
 
   onMount(() => {

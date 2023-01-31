@@ -173,18 +173,16 @@ export default function Toolbar(props: {
           </div>
         </>
       )}
-
-      <div class="bytemd-toolbar-right">
-        {state.rightActions.map((item, index) => (
-          <div
-            class={cx('bytemd-toolbar-icon', tippyClass, tippyClassRight, {
-              'bytemd-toolbar-icon-active': item.active,
-            })}
-            bytemd-tippy-path={index}
-            innerHTML={item.icon}
-          ></div>
-        ))}
-      </div>
+      <div className="bytemd-space"></div>
+      {state.rightActions.map((item, index) => (
+        <div
+          class={cx('bytemd-toolbar-icon', tippyClass, tippyClassRight, {
+            'bytemd-toolbar-icon-active': item.active,
+          })}
+          bytemd-tippy-path={index}
+          innerHTML={item.icon}
+        ></div>
+      ))}
     </div>
   )
 }
