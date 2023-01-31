@@ -3,14 +3,15 @@ import Status from './status.lite'
 import Toc from './toc.lite'
 import Toolbar from './toolbar.lite'
 import Viewer from './viewer.lite'
-import { onMount, useRef, useStore } from '@builder.io/mitosis'
+import { onMount, onUpdate, useRef, useStore } from '@builder.io/mitosis'
 import {
+  basicSetup,
   BytemdEditorContext,
-  createEditor,
   cx,
   EditorProps,
   EditorView,
   getBuiltinActions,
+  markdown,
 } from 'bytemd'
 import en from 'bytemd/locales/en.json'
 
@@ -77,12 +78,31 @@ export default function Editor(props: EditorProps) {
   })
 
   onMount(() => {
-    state.editor = createEditor(editorEl)
+    const updateListener = EditorView.updateListener.of((vu) => {
+      // console.log(vu)
+      if (vu.docChanged) {
+        props.onChange?.(vu.state.doc.toString())
+      }
+    })
+
+    state.editor = new EditorView({
+      doc: props.value,
+      extensions: [basicSetup, markdown(), updateListener],
+      parent: editorEl,
+    })
 
     new ResizeObserver((entries) => {
       state.containerWidth = entries[0].contentRect.width
       // console.log(containerWidth);
     }).observe(root, { box: 'border-box' })
+  })
+
+  onUpdate(() => {
+    if (state.editor.state.doc.toString() !== props.value) {
+      state.editor.dispatch({
+        changes: { from: 0, to: props.value.length, insert: props.value },
+      })
+    }
   })
 
   return (

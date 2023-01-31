@@ -6,19 +6,10 @@ import type {
   BytemdLocale,
   BytemdEditorContext,
 } from './types'
-import { markdown } from '@codemirror/lang-markdown'
-import { EditorView, basicSetup } from 'codemirror'
 import selectFiles from 'select-files'
 
-export function createEditor(dom: HTMLElement) {
-  let editor = new EditorView({
-    extensions: [basicSetup, markdown()],
-    parent: dom,
-  })
-  return editor
-}
-
-export type { EditorView } from 'codemirror'
+export { EditorView, basicSetup } from 'codemirror'
+export { markdown } from '@codemirror/lang-markdown'
 
 export type EditorUtils = ReturnType<typeof createEditorUtils>
 

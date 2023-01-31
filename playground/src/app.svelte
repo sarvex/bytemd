@@ -119,8 +119,8 @@
         })
       )
     }}
-    on:change={(e) => {
-      value = e.detail.value
+    onChange={(v) => {
+      value = v
     }}
   />
 </div>
