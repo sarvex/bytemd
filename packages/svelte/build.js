@@ -30,3 +30,5 @@ for (let file of files) {
     code.replaceAll(' lang="ts"', '')
   )
 }
+
+console.log('done.')
