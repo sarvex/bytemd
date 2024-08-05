@@ -7,7 +7,7 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.4"
+    "nuxt": "3.12.4"
   },
   "dependencies": {
     "@bytemd/plugin-gfm": "latest",
